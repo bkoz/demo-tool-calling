@@ -26,18 +26,18 @@ export LLAMA_STACK_SERVER=http://localhost:$LLAMA_STACK_PORT
 Llama Stack Server
 
 ```bash
-podman run -it \                   
+podman run --name=llamastack \                   
   -d -p $LLAMA_STACK_PORT:$LLAMA_STACK_PORT \
   llamastack/distribution-ollama:0.2.9 \
   --port $LLAMA_STACK_PORT \
   --env INFERENCE_MODEL=$LLAMA_STACK_MODEL \
-  --env OLLAMA_URL=http://host.containers.internal:11434
+  --env OLLAMA_URL=http://localhost:11434
 ```
 
 MCP Server
 
 ```bash
-podman run -it -d -p 3001:3001 quay.io/rh-aiservices-bu/mcp-weather:0.1.0 
+podman run --name=mcp_weather --rm -d -p 3001:3001 quay.io/rh-aiservices-bu/mcp-weather:0.1.0-amd64
 ```
 
 Register MCP Server as a tool
@@ -46,6 +46,20 @@ Register MCP Server as a tool
 llama-stack-client toolgroups register --provider-id model-context-protocol --mcp-endpoint "http://localhost:3001/sse" mcp::weather
 ```
 
+Run a check
+```bash
+llama-stack-client toolgroups list
+```
+```console
+┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ identifier             ┃ provider_id            ┃ args ┃ mcp_endpoint                                 ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ builtin::websearch     │ tavily-search          │ None │ None                                         │
+│ builtin::rag           │ rag-runtime            │ None │ None                                         │
+│ builtin::wolfram_alpha │ wolfram-alpha          │ None │ None                                         │
+│ mcp::weather           │ model-context-protocol │ None │ McpEndpoint(uri='http://localhost:3001/sse') │
+└────────────────────────┴────────────────────────┴──────┴──────────────────────────────────────────────┘
+```
 Execute llama stack client
 
 ```bash

@@ -18,7 +18,7 @@ def calculator(x: float, y: float, operation: str) -> dict:
 
     :param x: First number to perform operation on
     :param y: Second number to perform operation on
-    :param operation: Mathematical operation to perform ('add', 'subtract', 'multiply', 'divide')
+    :param operation: Mathematical operation to perform ('add', 'subtract', 'multiply', 'divide', 'average', 'max')
     :returns: Dictionary containing success status and result or error message
     """
     try:
@@ -32,6 +32,10 @@ def calculator(x: float, y: float, operation: str) -> dict:
             if float(y) == 0:
                 return {"success": False, "error": "Cannot divide by zero"}
             result = float(x) / float(y)
+        elif operation == "average":
+            result = (float(x) + float(y)) / 2
+        elif operation == "max":
+            result = max(x, y)
         else:
             return {"success": False, "error": "Invalid operation"}
 
@@ -52,8 +56,10 @@ session_id = agent.create_session("test-session")
 print(f"Created session_id={session_id} for Agent({agent.agent_id})")
 
 user_prompts = [
-    "What is the weather in Austin?",
-    "What is 40+30"
+    "Get the weather forecast for Austin, TX",
+    "Get the weather forecast for Dallas, TX",
+    "Find the max temperature of Austin and Dallas on Tuesday?",
+    "Convert the max temperatures to floating point numbers by removing the F symbols then find the average temperature of Austin and Dallas on Tuesday?"
 ]
 for prompt in user_prompts:
     print(f"User> {prompt}")
