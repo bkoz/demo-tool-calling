@@ -5,7 +5,7 @@ import os
 base_url = "http://localhost:8321"
 
 try:
-    base_url = os.environ["LLAMA_STACK_SERVER", "http://localhost:8321"]
+    base_url = os.environ.get("LLAMA_STACK_SERVER", "http://localhost:8321")
     client = LlamaStackClient(base_url=base_url)
 
 except KeyError:
