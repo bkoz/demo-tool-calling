@@ -1,12 +1,18 @@
 from llama_stack_client import LlamaStackClient, Agent, AgentEventLogger
 from llama_stack_client.lib.agents.client_tool import client_tool
+import os
 
 base_url = "http://localhost:8321"
 
-client = LlamaStackClient(
-    base_url=base_url
-)
-model = "llama3.1:8b"
+try:
+    base_url = os.environ["LLAMA_STACK_SERVER", "http://localhost:8321"]
+    client = LlamaStackClient(base_url=base_url)
+
+except KeyError:
+    print("Error creating LlamaStackClient. Make sure LLAMA_STACK_SERVER is set.")
+    exit(1)
+    
+model=os.environ.get("INFERENCE_MODEL", "llama3.1:8b")
 
 # System prompt configures the assistant behavior
 sys_prompt = """You are a helpful assistant. Use tools to answer. When you use a tool always respond with a summary of the result."""
