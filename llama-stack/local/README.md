@@ -74,8 +74,21 @@ llama-stack-client toolgroups list
 │ mcp::weather           │ model-context-protocol │ None │ McpEndpoint(uri='http://localhost:3001/sse') │
 └────────────────────────┴────────────────────────┴──────┴──────────────────────────────────────────────┘
 ```
-Execute llama stack client
+Run the examples
 
+Basic RAG - This example uses a built-in RAG tool.
 ```bash
-python3 example_tools.py
+python3 01-basic-rag.py
 ```
+
+Weather, Calculator Tools - This example uses a user defined calculator tool and interacts with an
+MCP server to obtain weather info.
+```bash
+python 02-weather-calc-tools.py
+```
+
+Guardrails - Getting started with security.
+```bash
+python 03-guardrails.py
+```
+
