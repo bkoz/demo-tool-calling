@@ -16,7 +16,7 @@ response = client.vector_dbs.register(
     provider_id="faiss",
 )
 
-# Ingest a few web pages in the vector DB.
+# Create a list of Llamastack RAG Documents from 3 files within a github repo.
 urls = ["memory_optimizations.rst", "chat.rst", "llama3.rst"]
 documents = [
     RAGDocument(
@@ -28,6 +28,7 @@ documents = [
     for i, url in enumerate(urls)
 ]
 
+# Ingest the documents into the vector DB.
 client.tool_runtime.rag_tool.insert(
     documents=documents,
     vector_db_id=vector_db_id,
