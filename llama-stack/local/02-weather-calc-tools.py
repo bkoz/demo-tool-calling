@@ -2,7 +2,7 @@ from llama_stack_client import LlamaStackClient, Agent, AgentEventLogger
 from llama_stack_client.lib.agents.client_tool import client_tool
 import os
 
-base_url = "http://localhost:8321"
+# base_url = "http://localhost:8321"
 
 try:
     base_url = os.environ.get("LLAMA_STACK_SERVER", "http://localhost:8321")

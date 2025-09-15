@@ -7,8 +7,8 @@ import os
 # Initialize the client
 client = LlamaStackClient(base_url="http://localhost:8321")
 
+# Register the faiss vector DB.
 vector_db_id = "my_documents"
-
 response = client.vector_dbs.register(
     vector_db_id=vector_db_id,
     embedding_model="all-MiniLM-L6-v2",
@@ -16,6 +16,7 @@ response = client.vector_dbs.register(
     provider_id="faiss",
 )
 
+# Ingest a few web pages in the vector DB.
 urls = ["memory_optimizations.rst", "chat.rst", "llama3.rst"]
 documents = [
     RAGDocument(
@@ -36,11 +37,10 @@ client.tool_runtime.rag_tool.insert(
 model=os.environ.get("INFERENCE_MODEL", "llama3.1:8b")
 print(f'{model=}')
 
+# Create the RAG agent
 rag_agent = Agent(
     client,
-    # model=os.environ.get("INFERENCE_MODEL"),
     model=model,
-
     # Define instructions for the agent (system prompt)
     instructions="You are a helpful assistant, answer questions only based on information in the documents provided",
     enable_session_persistence=False,
@@ -59,13 +59,12 @@ agent_id = rag_agent.agent_id
 
 session_id = rag_agent.create_session(session_name="test-session")
 
-# session_id = client.agents.session.create(agent_id, session_name="test-session")
-
 user_prompts = [
     "How to optimize memory usage in torchtune? use the builtin knowledge_search tool to get information.",
 ]
 
 
+# Perform the RAG query using the vector DB and the LLM.
 for prompt in user_prompts:
     print(f"User> {prompt}")
     response = rag_agent.create_turn(
