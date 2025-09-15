@@ -33,12 +33,13 @@ client.tool_runtime.rag_tool.insert(
     chunk_size_in_tokens=512,
 )
 
-model=os.environ["INFERENCE_MODEL"],
+model=os.environ.get("INFERENCE_MODEL", "llama3.1:8b")
 print(f'{model=}')
 
 rag_agent = Agent(
     client,
-    model=os.environ["INFERENCE_MODEL"],
+    # model=os.environ.get("INFERENCE_MODEL"),
+    model=model,
 
     # Define instructions for the agent (system prompt)
     instructions="You are a helpful assistant, answer questions only based on information in the documents provided",
