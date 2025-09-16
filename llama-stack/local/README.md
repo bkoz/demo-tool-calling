@@ -1,6 +1,6 @@
 ### Setup
 
-Adapted from: https://rh-aiservices-bu.github.io/llama-stack-tutorial
+[Dallas Summit Connect 2025 Slides](https://people.redhat.com/bkozdemb/downloads/llamastack_dallas_2025.pdf)
 
 Install the [ollama model server](https://ollama.com/).
 
@@ -9,7 +9,6 @@ Install python library management tools.
 ```bash
 pip install uv pipenv
 ```
-
 Sync python env
 
 ```bash
@@ -35,8 +34,6 @@ Hello! How are you today? Is there something I can help you with or would you li
 
 >>> /bye
 ```
-
-
 Start the Llama Stack Server.
 
 ```bash
@@ -92,3 +89,4 @@ Guardrails - Getting started with security.
 python 03-guardrails.py
 ```
 
+Adapted from: https://rh-aiservices-bu.github.io/llama-stack-tutorial
