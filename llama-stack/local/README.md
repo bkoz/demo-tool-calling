@@ -79,7 +79,16 @@ llama-stack-client toolgroups list
 │ mcp::weather           │ model-context-protocol │ None │ McpEndpoint(uri='http://localhost:3001/sse') │
 └────────────────────────┴────────────────────────┴──────┴──────────────────────────────────────────────┘
 ```
-Run the examples
+
+Setup port forwarding from your local desktop/laptop system.
+
+```bash
+ssh -L8321:localhost:8321 user@remoteRHELhost
+```
+
+Visit the [swagger docs](http://localhost:8321/docs) from your local system.
+
+Run the llamastack client examples.
 
 Basic RAG - This example uses a built-in RAG tool.
 ```bash
