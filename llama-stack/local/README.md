@@ -7,6 +7,12 @@ Install the [ollama model server](https://ollama.com/).
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
+Pull the needed models.
+```bash
+ollama pull llama-guard3:8b-q4_0
+ollama pull llama3.1:8b
+```
+
 ```bash
 yum install python311 -y
 ```
