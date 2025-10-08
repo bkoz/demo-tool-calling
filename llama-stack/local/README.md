@@ -3,6 +3,13 @@
 [Dallas Summit Connect 2025 Slides](https://people.redhat.com/bkozdemb/downloads/llamastack_dallas_2025.pdf)
 
 Install the [ollama model server](https://ollama.com/).
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+```bash
+yum install python311 -y
+```
 
 Install python library management tools.
 
