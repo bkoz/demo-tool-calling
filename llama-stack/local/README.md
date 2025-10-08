@@ -14,7 +14,7 @@ ollama pull llama3.1:8b
 ```
 
 ```bash
-yum install python311 -y
+yum install python311 bc -y
 ```
 
 Install python library management tools.
