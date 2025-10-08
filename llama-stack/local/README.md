@@ -57,7 +57,7 @@ podman run --name=llamastack --network=host -d -p $LLAMA_STACK_PORT:$LLAMA_STACK
 Start the MCP Weather Server.
 
 ```bash
-podman run --name=mcp_weather --rm -d -p 3001:3001 quay.io/rh-aiservices-bu/mcp-weather:0.1.0-amd64
+podman run --name=mcp_weather -d -p 3001:3001 quay.io/rh-aiservices-bu/mcp-weather:0.1.0-amd64
 ```
 
 Register the MCP Server as a tool.
