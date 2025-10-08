@@ -11,6 +11,7 @@ Pull the needed models.
 ```bash
 ollama pull llama-guard3:8b-q4_0
 ollama pull llama3.1:8b
+ollama pull all-minilm
 ```
 
 ```bash
