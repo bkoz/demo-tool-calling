@@ -44,12 +44,7 @@ Hello! How are you today? Is there something I can help you with or would you li
 Start the Llama Stack Server.
 
 ```bash
-podman run --name=llamastack --network=host \                   
-  -d -p $LLAMA_STACK_PORT:$LLAMA_STACK_PORT \
-  llamastack/distribution-ollama:0.2.9 \
-  --port $LLAMA_STACK_PORT \
-  --env INFERENCE_MODEL=$LLAMA_STACK_MODEL \
-  --env OLLAMA_URL=http://localhost:11434
+podman run --name=llamastack --network=host -d -p $LLAMA_STACK_PORT:$LLAMA_STACK_PORT llamastack/distribution-ollama:0.2.9 --port $LLAMA_STACK_PORT --env INFERENCE_MODEL=$LLAMA_STACK_MODEL --env OLLAMA_URL=http://localhost:11434
 ```
 
 Start the MCP Weather Server.
